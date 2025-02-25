@@ -9,10 +9,10 @@
     },
     "description": "OpenTelemetry metrics exporter to Graphite.",
     "keywords": [
-        "opentelemetry",
+        "graphite",
         "metrics",
-        "stats",
-        "graphite"
+        "opentelemetry",
+        "stats"
     ],
     "version": "0.1.0",
     "main": "dist/index.js",
