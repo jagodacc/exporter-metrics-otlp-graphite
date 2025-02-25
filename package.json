@@ -1,0 +1,42 @@
+{
+    "name": "@jagodacc/exporter-metrics-otlp-graphite",
+    "author": "McFly",
+    "license": "MIT",
+    "homepage": "https://github.com/jagodacc/exporter-metrics-otlp-graphite#readme",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/jagodacc/exporter-metrics-otlp-graphite.git"
+    },
+    "description": "OpenTelemetry metrics exporter to Graphite.",
+    "keywords": [
+        "opentelemetry",
+        "metrics",
+        "stats",
+        "graphite"
+    ],
+    "version": "0.1.0",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "engines": {
+        "node": ">=18.0.0"
+    },
+    "scripts": {
+        "build": "tsc",
+        "test": "jest"
+    },
+    "dependencies": {
+        "@opentelemetry/sdk-metrics": "^1.0.0"
+    },
+    "peerDependencies": {
+        "@opentelemetry/api": "^1.0.0",
+        "@opentelemetry/core": "^1.0.0"
+    },
+    "devDependencies": {
+        "@opentelemetry/api": "^1.0.0",
+        "@opentelemetry/core": "^1.0.0",
+        "@types/jest": "^29.0.0",
+        "jest": "^29.0.0",
+        "ts-jest": "^29.0.0",
+        "typescript": "^5.0.0"
+    }
+}
