@@ -1,7 +1,7 @@
 {
     "name": "@jagodacc/exporter-metrics-otlp-graphite",
     "author": "McFly",
-    "license": "MIT",
+    "license": "Apache-2.0",
     "homepage": "https://github.com/jagodacc/exporter-metrics-otlp-graphite#readme",
     "repository": {
         "type": "git",
