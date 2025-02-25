@@ -7,6 +7,9 @@
         "type": "git",
         "url": "git+https://github.com/jagodacc/exporter-metrics-otlp-graphite.git"
     },
+    "files": [
+        "dist"
+    ],
     "description": "OpenTelemetry metrics exporter to Graphite.",
     "keywords": [
         "graphite",
