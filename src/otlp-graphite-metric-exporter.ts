@@ -138,14 +138,18 @@ export class OTLPGraphiteMetricExporter implements PushMetricExporter {
         }
     }
 
-    private attributesToTags(attributes: Attributes): Record<string, string> {
-        return Object.entries(attributes).reduce((tags: Record<string, string>, [key, value]) => {
+    private attributesToTags(attributes: Attributes): string[] {
+        return Object.entries(attributes).reduce((tags: string[], [key, value]) => {
             if (typeof value === "string" || typeof value === "number") {
-                tags[key] = value.toString();
+                tags.push(`${this.sanitizeGraphiteTag(key)}=${this.sanitizeGraphiteTag(value.toString())}`);
             }
 
             return tags;
-        }, {});
+        }, []);
+    }
+
+    private sanitizeGraphiteTag(value: string): string {
+        return value.replace(/[^a-zA-Z0-9_-]/g, "_");
     }
 
     private writeMetrics(metrics: GraphiteMetric[]): void {
@@ -167,7 +171,7 @@ export class OTLPGraphiteMetricExporter implements PushMetricExporter {
         }
 
         try {
-            const response = await fetch(`${this.baseURL}/metrics`, {
+            const response = await fetch(this.baseURL, {
                 method: "POST",
                 headers: this.headers,
                 body: JSON.stringify(this.metricsCache)

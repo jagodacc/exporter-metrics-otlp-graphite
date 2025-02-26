@@ -3,5 +3,5 @@ export interface GraphiteMetric {
     value: number;
     time: number;
     interval: number;
-    tags?: Record<string, string>;
+    tags?: string[];
 }
