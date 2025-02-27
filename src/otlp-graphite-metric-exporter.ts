@@ -8,7 +8,7 @@ import type { GraphiteClientInterface } from './interfaces/graphite-client.inter
 
 export class OTLPGraphiteMetricExporter implements PushMetricExporter {
     private readonly logger = diag.createComponentLogger({
-        namespace: OTLPGraphiteMetricExporter.name
+        namespace: '[exporter-metrics-otlp-graphite]'
     });
 
     private readonly metricPrefix: string;
@@ -128,9 +128,8 @@ export class OTLPGraphiteMetricExporter implements PushMetricExporter {
             await this.forceFlush();
 
             resultCallback({ code: ExportResultCode.SUCCESS });
-        } catch (error) {
-            this.logger.error('Error exporting metrics', error);
-            resultCallback({ code: ExportResultCode.FAILED });
+        } catch (error: any) {
+            resultCallback({ code: ExportResultCode.FAILED, error });
         }
     }
 

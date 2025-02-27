@@ -15,7 +15,8 @@ export class CarbonClient implements GraphiteClientInterface {
         this.client
             .connect({
                 host: options.host,
-                port: options.port ?? 2003
+                port: options.port ?? 2003,
+                keepAlive: true
             })
             .on('error', (err) => {
                 this.logger.error(`Failed to connect to Graphite: ${err}`);
