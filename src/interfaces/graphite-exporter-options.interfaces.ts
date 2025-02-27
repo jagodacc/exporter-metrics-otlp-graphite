@@ -1,21 +1,7 @@
-export type GraphitePlaintextExporterOptions = {
-    protocol: 'plaintext';
-    host: string;
-    port?: number;
+import { CarbonClientOptions } from '../clients/carbon-client/carbon-client-options.type';
+import { HttpClientOptions } from '../clients/http-client/http-client-options.type';
+
+export type GraphiteExporterOptions = {
     metricPrefix?: string;
     interval?: number;
-};
-
-export type GraphiteHttpExporterOptions = {
-    protocol?: 'http' | 'https';
-    host: string;
-    path?: string;
-    user?: string;
-    password?: string;
-    apiKey?: string;
-    additionalHeaders?: Record<string, string>;
-    metricPrefix?: string;
-    interval?: number;
-};
-
-export type GraphiteExporterOptions = GraphitePlaintextExporterOptions | GraphiteHttpExporterOptions;
+} & (CarbonClientOptions | HttpClientOptions);

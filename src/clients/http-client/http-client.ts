@@ -1,17 +1,17 @@
 import { diag } from '@opentelemetry/api';
-import type { GraphiteHttpExporterOptions, GraphiteMetric } from '../interfaces';
-import type { GraphiteClientInterface } from '../interfaces/graphite-client.interface';
+import { EXPORTER_NAMESPACE } from '../../consts';
+import type { GraphiteMetric } from '../../interfaces';
+import type { GraphiteClientInterface } from '../../interfaces/graphite-client.interface';
+import type { HttpClientOptions } from './http-client-options.type';
 
 export class HttpClient implements GraphiteClientInterface {
-    private readonly logger = diag.createComponentLogger({
-        namespace: '[exporter-metrics-otlp-graphite:HttpClient]'
-    });
+    private readonly logger = diag.createComponentLogger({ namespace: `${EXPORTER_NAMESPACE}:http-client` });
 
     private readonly baseURL: string;
 
     private readonly headers: Record<string, string>;
 
-    constructor(options: GraphiteHttpExporterOptions) {
+    constructor(options: HttpClientOptions) {
         options.protocol = options.protocol === 'https' ? 'https' : 'http';
         options.path = options.path ?? '/metrics';
 

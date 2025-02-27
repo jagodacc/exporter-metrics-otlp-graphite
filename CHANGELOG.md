@@ -10,8 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Pass error to callback when exporting fails.
-- Fixed namespace name for opentelemetry logs.
-- Fixed socket client connection in `CarbonClient`.
+- Fixed namespace name for OpenTelemetry logs.
+- Fixed the issue with connection termination in `CarbonClient`.
 
 ## [0.2.0] - 2025-02-26
 
