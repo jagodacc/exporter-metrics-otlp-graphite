@@ -1,15 +1,14 @@
 import { type Attributes, diag } from '@opentelemetry/api';
 import { type ExportResult, ExportResultCode } from '@opentelemetry/core';
 import { AggregationTemporality, DataPointType, InstrumentType, type PushMetricExporter, type ResourceMetrics } from '@opentelemetry/sdk-metrics';
-import { CarbonClient } from './client/carbon-client';
-import { HttpClient } from './client/http-client';
+import { CarbonClient } from './clients/carbon-client';
+import { HttpClient } from './clients/http-client';
+import { EXPORTER_NAMESPACE } from './consts';
 import type { GraphiteExporterOptions, GraphiteMetric } from './interfaces';
 import type { GraphiteClientInterface } from './interfaces/graphite-client.interface';
 
 export class OTLPGraphiteMetricExporter implements PushMetricExporter {
-    private readonly logger = diag.createComponentLogger({
-        namespace: OTLPGraphiteMetricExporter.name
-    });
+    private readonly logger = diag.createComponentLogger({ namespace: EXPORTER_NAMESPACE });
 
     private readonly metricPrefix: string;
 
@@ -128,9 +127,8 @@ export class OTLPGraphiteMetricExporter implements PushMetricExporter {
             await this.forceFlush();
 
             resultCallback({ code: ExportResultCode.SUCCESS });
-        } catch (error) {
-            this.logger.error('Error exporting metrics', error);
-            resultCallback({ code: ExportResultCode.FAILED });
+        } catch (error: any) {
+            resultCallback({ code: ExportResultCode.FAILED, error });
         }
     }
 
