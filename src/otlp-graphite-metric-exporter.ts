@@ -166,6 +166,8 @@ export class OTLPGraphiteMetricExporter implements PushMetricExporter {
 
         try {
             await this.client.writeMetrics(this.metricsCache);
+
+            this.metricsCache = [];
         } catch (error: any) {
             this.logger.error(`Error flushing metrics: ${JSON.stringify(error)}`);
 
